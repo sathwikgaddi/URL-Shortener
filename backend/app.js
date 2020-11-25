@@ -12,6 +12,7 @@ mongoose
   "mongodb+srv://zyx:PiHUACaVmfoc0BZ2@cluster0-wm8j3.mongodb.net/url-shortener?retryWrites=true&w=majority", {
     useUnifiedTopology: true,
     useNewUrlParser: true,
+    useCreateIndex: true
     }
 )
   .then(() => {

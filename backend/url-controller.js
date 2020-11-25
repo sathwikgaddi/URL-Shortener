@@ -3,19 +3,18 @@ const bcrypt = require("bcryptjs");
 
 exports.createLink = (req, res, next) => {
 
-        console.log(req.body.customString)
-        let url
+        let url;
 
         if(req.body.customString!=undefined) {
 
          url = new URL({
           longURL:req.body.link,
-          customString:req.body.customString
+          customUrl:req.body.customString
         })
       }
         else {
            url = new URL({
-            longURL:req.body.link
+            longURL:req.body.link,
           })
 
         }
@@ -31,10 +30,16 @@ exports.createLink = (req, res, next) => {
         });
       })
       .catch(err => {
-        console.log(err)
+        if (err.code==11000) {
+          console.log(err)  
+                  res.status(404).json({
+                    message: "Custom String already taken!",
+                  });
+        }else {
         res.status(500).json({
           message: "Invalid!"
         });
+      }
       });
       
     }

@@ -1,0 +1,22 @@
+<div class = 'bg-img'>
+<h1>URL SHORTENER</h1>
+<form (submit)="onGivenLink(linkForm)" #linkForm="ngForm" >
+    
+    <input matInput name="link" ngModel type="text" placeholder="Place your link here" #linkInput="ngModel" required >
+
+    <br><br><br>
+    <input type="radio" ngModel  name="custom" value="custom" #customInput="ngModel" [(ngModel)]="flag">
+    <label for="male">Custom</label><br>  
+    <input type="radio" ngModel  name="custom" value="default" #customInput="ngModel"   [(ngModel)]="flag">
+    <label for="female">Default</label><br><br><br>
+    
+    <input matInput name="customString" ngModel type="text" placeholder="custom string" #customInput="ngModel" *ngIf="flag=='custom'"><br><br>
+  
+  <button  color="accent" type="submit" >Convert</button>
+</form>
+
+
+<h2 *ngIf='link'>Short Link:</h2>
+<p>{{link}}</p>
+
+</div>
